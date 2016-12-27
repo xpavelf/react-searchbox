@@ -1,0 +1,84 @@
+/**************************/
+/***** SearchBox **********/
+/**************************/
+.SearchBox {
+  position: relative;
+}
+
+.SearchBox__clearButton {
+  position: absolute;
+  background: transparent;
+  border: none;
+  z-index: 12;
+  font-size: 20px;
+  top: calc(50% - 16px);
+  right: 5px;
+  height: 32px;
+  width: 32px;
+}
+
+.SearchBox__input {
+  position: relative;
+  font-size: 20px;
+  z-index: 11;
+  padding: 15px 10px 10px 10px;
+  border: none;
+  display: inline-block;
+  width: 100%;
+}
+
+/**************************/
+/***** SugestionList ******/
+/**************************/
+.SuggestionList {
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  max-height: 300px;
+  min-width: 300px;
+  overflow: auto;
+  border: 3px solid #003d50;
+  z-index: 11;
+  background-color: white;
+}
+
+.SuggestionList__backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(50,50,50,.25);
+}
+
+.SuggestionList--open {
+  display: block;
+}
+/**************************/
+/****** Suggestion ********/
+/**************************/
+.Suggestion {
+  padding: 0px;
+}
+
+.Suggestion__block {
+  padding: 10px 10px;
+}
+
+.Suggestion__link {
+  margin: -10px -10px;
+  padding: 10px 10px;
+  border-bottom: 1px solid #ccc;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+
+.Suggestion__link:hover,
+.Suggestion__link:focus {
+  background-color: #eee;
+}
