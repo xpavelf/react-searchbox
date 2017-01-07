@@ -5,16 +5,20 @@ export default class SearchBox extends React.Component {
   static propTypes = {
     onChange: React.PropTypes.func,
     onSelect: React.PropTypes.func,
+    onBack: React.PropTypes.func,
     selectedToString: React.PropTypes.func,
     placeholder: React.PropTypes.string,
     suggestions: React.PropTypes.array,
     suggestionComp: React.PropTypes.func,
     nullSuggestionElm: React.PropTypes.element,
-    emptySuggestionElm: React.PropTypes.element
+    emptySuggestionElm: React.PropTypes.element,
+    showBackButton: React.PropTypes.bool
   }
 
   static defaultProps = {
     placeholder: "Search...",
+    showBackButton: false,
+    onBack: () => {},
     selectedToString: (data) => data
   }
 
@@ -54,6 +58,10 @@ export default class SearchBox extends React.Component {
   render() {
     return (
       <div className="SearchBox">
+        { this.props.showBackButton &&
+          <button className="SearchBox__backButton"
+            onClick={this.props.onBack}>←</button>
+        }
         <input value={this.state.inputValue}
           className="SearchBox__input"
           onChange={this.onChange}

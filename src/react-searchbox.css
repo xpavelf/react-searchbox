@@ -5,6 +5,15 @@
   position: relative;
 }
 
+.SearchBox__input {
+  position: relative;
+  font-size: 20px;
+  z-index: 11;
+  padding: 15px 50px 10px 10px;
+  border: none;
+  display: inline-block;
+  width: 100%;
+}
 .SearchBox__clearButton {
   position: absolute;
   background: transparent;
@@ -17,14 +26,20 @@
   width: 32px;
 }
 
-.SearchBox__input {
-  position: relative;
-  font-size: 20px;
-  z-index: 11;
-  padding: 15px 10px 10px 10px;
+.SearchBox__backButton {
+  position: absolute;
+  background: transparent;
   border: none;
-  display: inline-block;
-  width: 100%;
+  z-index: 12;
+  font-size: 20px;
+  top: calc(50% - 16px);
+  left: 10px;
+  height: 32px;
+  width: 32px;
+}
+
+.SearchBox__backButton + .SearchBox__input {
+  padding-left: 50px;
 }
 
 /**************************/

@@ -70,6 +70,12 @@ var SearchBox = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "SearchBox" },
+        this.props.showBackButton && _react2.default.createElement(
+          "button",
+          { className: "SearchBox__backButton",
+            onClick: this.props.onBack },
+          "\u2190"
+        ),
         _react2.default.createElement("input", { value: this.state.inputValue,
           className: "SearchBox__input",
           onChange: this.onChange,
@@ -97,15 +103,19 @@ var SearchBox = function (_React$Component) {
 SearchBox.propTypes = {
   onChange: _react2.default.PropTypes.func,
   onSelect: _react2.default.PropTypes.func,
+  onBack: _react2.default.PropTypes.func,
   selectedToString: _react2.default.PropTypes.func,
   placeholder: _react2.default.PropTypes.string,
   suggestions: _react2.default.PropTypes.array,
   suggestionComp: _react2.default.PropTypes.func,
   nullSuggestionElm: _react2.default.PropTypes.element,
-  emptySuggestionElm: _react2.default.PropTypes.element
+  emptySuggestionElm: _react2.default.PropTypes.element,
+  showBackButton: _react2.default.PropTypes.bool
 };
 SearchBox.defaultProps = {
   placeholder: "Search...",
+  showBackButton: false,
+  onBack: function onBack() {},
   selectedToString: function selectedToString(data) {
     return data;
   }
