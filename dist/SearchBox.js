@@ -65,8 +65,17 @@ var SearchBox = function (_React$Component) {
   }
 
   _createClass(SearchBox, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.autoFocus) {
+        this.input.focus();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         "div",
         { className: "SearchBox" },
@@ -77,6 +86,9 @@ var SearchBox = function (_React$Component) {
           "\u2190"
         ),
         _react2.default.createElement("input", { value: this.state.inputValue,
+          ref: function ref(input) {
+            _this2.input = input;
+          },
           className: "SearchBox__input",
           onChange: this.onChange,
           placeholder: this.props.placeholder }),
@@ -110,11 +122,13 @@ SearchBox.propTypes = {
   suggestionComp: _react2.default.PropTypes.func,
   nullSuggestionElm: _react2.default.PropTypes.element,
   emptySuggestionElm: _react2.default.PropTypes.element,
-  showBackButton: _react2.default.PropTypes.bool
+  showBackButton: _react2.default.PropTypes.bool,
+  autoFocus: _react2.default.PropTypes.bool
 };
 SearchBox.defaultProps = {
   placeholder: "Search...",
   showBackButton: false,
+  autoFocus: true,
   onBack: function onBack() {},
   selectedToString: function selectedToString(data) {
     return data;

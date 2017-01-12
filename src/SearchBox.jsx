@@ -12,12 +12,14 @@ export default class SearchBox extends React.Component {
     suggestionComp: React.PropTypes.func,
     nullSuggestionElm: React.PropTypes.element,
     emptySuggestionElm: React.PropTypes.element,
-    showBackButton: React.PropTypes.bool
+    showBackButton: React.PropTypes.bool,
+    autoFocus: React.PropTypes.bool
   }
 
   static defaultProps = {
     placeholder: "Search...",
     showBackButton: false,
+    autoFocus: true,
     onBack: () => {},
     selectedToString: (data) => data
   }
@@ -25,6 +27,12 @@ export default class SearchBox extends React.Component {
   state = {
     inputValue: "",
     showSuggestionList: false
+  }
+
+  componentDidMount(){
+    if (this.props.autoFocus) {
+      this.input.focus();
+    }
   }
 
   clearInput = () => {
@@ -63,6 +71,7 @@ export default class SearchBox extends React.Component {
             onClick={this.props.onBack}>←</button>
         }
         <input value={this.state.inputValue}
+          ref={(input) => { this.input = input; }}
           className="SearchBox__input"
           onChange={this.onChange}
           placeholder={this.props.placeholder}  />
