@@ -96,7 +96,7 @@ var SearchBox = function (_React$Component) {
           "button",
           { className: "SearchBox__clearButton",
             onClick: this.clearInput },
-          "x"
+          "\u2715"
         ),
         _react2.default.createElement(_SuggestionList2.default, {
           show: this.state.showSuggestionList,

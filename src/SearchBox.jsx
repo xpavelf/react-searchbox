@@ -77,7 +77,7 @@ export default class SearchBox extends React.Component {
           placeholder={this.props.placeholder}  />
 
         <button className="SearchBox__clearButton"
-          onClick={this.clearInput}>x</button>
+          onClick={this.clearInput}>✕</button>
 
         <SuggestionList
           show={this.state.showSuggestionList}
