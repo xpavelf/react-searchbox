@@ -8,10 +8,10 @@ export default class SearchBox extends React.Component {
     onBack: React.PropTypes.func,
     selectedToString: React.PropTypes.func,
     placeholder: React.PropTypes.string,
-    suggestions: React.PropTypes.array,
+    suggestions: React.PropTypes.object,
+    parseSuggestionsData: React.PropTypes.func,
+    renderEmptySuggestion: React.PropTypes.func,
     suggestionComp: React.PropTypes.func,
-    nullSuggestionElm: React.PropTypes.element,
-    emptySuggestionElm: React.PropTypes.element,
     showBackButton: React.PropTypes.bool,
     autoFocus: React.PropTypes.bool
   }
@@ -84,8 +84,8 @@ export default class SearchBox extends React.Component {
           onSelect={this.onSelect}
           suggestions={this.props.suggestions}
           suggestionComp={this.props.suggestionComp}
-          nullSuggestionElm={this.props.nullSuggestionElm}
-          emptySuggestionElm={this.props.emptySuggestionElm} />
+          parseSuggestionsData={this.props.parseSuggestionsData}
+          renderEmptySuggestion={this.props.renderEmptySuggestion} />
       </div>
     )
   }

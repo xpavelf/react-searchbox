@@ -3,18 +3,32 @@ import Suggestion from "./Suggestion"
 
 export default class SuggestionList extends React.Component {
   static propTypes = {
-    suggestions: React.PropTypes.array,
+    suggestions: React.PropTypes.object,
     suggestionComp: React.PropTypes.func,
-    nullSuggestionElm: React.PropTypes.element,
-    emptySuggestionElm: React.PropTypes.element
+    parseSuggestionsData: React.PropTypes.func,
+    renderEmptySuggestion: React.PropTypes.func
   }
   static defaultProps = {
     suggestions: null,
     suggestionComp: Suggestion,
-    nullSuggestionElm: <Suggestion>Searching ...</Suggestion>,
-    emptySuggestionElm: <Suggestion>Sorry, we didn't find any results &#x2639;</Suggestion>
+    parseSuggestionsData: (data) => data,
+    renderEmptySuggestion: (data) => null
   }
   state = { show: false }
+
+  renderSuggestions = (data) => {
+    let sugArr = this.props.parseSuggestionsData(data);
+
+    if (!sugArr || !sugArr.length) {
+      return this.props.renderEmptySuggestion(data);
+    }
+
+    return sugArr.map(itemData => (
+      <this.props.suggestionComp
+        onSelect={this.props.onSelect}
+        data={itemData} key={itemData.id} />)
+    )
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ show: nextProps.show });
@@ -22,29 +36,12 @@ export default class SuggestionList extends React.Component {
 
   hide = () => this.setState({ show: false })
 
-  getSuggestions = () => {
-
-    if (this.props.suggestions === null) {
-      return this.props.nullSuggestionElm
-    }
-
-    if (this.props.suggestions.length === 0) {
-      return this.props.emptySuggestionElm
-    }
-
-    return this.props.suggestions.map(data => (
-      <this.props.suggestionComp
-        onSelect={this.props.onSelect}
-        data={data} key={data.id} />)
-    )
-  }
-
   render() {
     let show = this.state.show ? "SuggestionList--open" : "";
     return (
       <div>
         <ul className={"SuggestionList " + show}>
-          {this.getSuggestions()}
+          {this.renderSuggestions(this.props.suggestions)}
         </ul>
         {this.state.show ? <div onClick={this.hide} className="SuggestionList__backdrop" /> : ""}
       </div>

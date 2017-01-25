@@ -103,8 +103,8 @@ var SearchBox = function (_React$Component) {
           onSelect: this.onSelect,
           suggestions: this.props.suggestions,
           suggestionComp: this.props.suggestionComp,
-          nullSuggestionElm: this.props.nullSuggestionElm,
-          emptySuggestionElm: this.props.emptySuggestionElm })
+          parseSuggestionsData: this.props.parseSuggestionsData,
+          renderEmptySuggestion: this.props.renderEmptySuggestion })
       );
     }
   }]);
@@ -118,10 +118,10 @@ SearchBox.propTypes = {
   onBack: _react2.default.PropTypes.func,
   selectedToString: _react2.default.PropTypes.func,
   placeholder: _react2.default.PropTypes.string,
-  suggestions: _react2.default.PropTypes.array,
+  suggestions: _react2.default.PropTypes.object,
+  parseSuggestionsData: _react2.default.PropTypes.func,
+  renderEmptySuggestion: _react2.default.PropTypes.func,
   suggestionComp: _react2.default.PropTypes.func,
-  nullSuggestionElm: _react2.default.PropTypes.element,
-  emptySuggestionElm: _react2.default.PropTypes.element,
   showBackButton: _react2.default.PropTypes.bool,
   autoFocus: _react2.default.PropTypes.bool
 };

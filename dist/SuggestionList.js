@@ -37,23 +37,20 @@ var SuggestionList = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SuggestionList.__proto__ || Object.getPrototypeOf(SuggestionList)).call.apply(_ref, [this].concat(args))), _this), _this.state = { show: false }, _this.hide = function () {
-      return _this.setState({ show: false });
-    }, _this.getSuggestions = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SuggestionList.__proto__ || Object.getPrototypeOf(SuggestionList)).call.apply(_ref, [this].concat(args))), _this), _this.state = { show: false }, _this.renderSuggestions = function (data) {
+      var sugArr = _this.props.parseSuggestionsData(data);
 
-      if (_this.props.suggestions === null) {
-        return _this.props.nullSuggestionElm;
+      if (!sugArr || !sugArr.length) {
+        return _this.props.renderEmptySuggestion(data);
       }
 
-      if (_this.props.suggestions.length === 0) {
-        return _this.props.emptySuggestionElm;
-      }
-
-      return _this.props.suggestions.map(function (data) {
+      return sugArr.map(function (itemData) {
         return _react2.default.createElement(_this2.props.suggestionComp, {
           onSelect: _this.props.onSelect,
-          data: data, key: data.id });
+          data: itemData, key: itemData.id });
       });
+    }, _this.hide = function () {
+      return _this.setState({ show: false });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -72,7 +69,7 @@ var SuggestionList = function (_React$Component) {
         _react2.default.createElement(
           "ul",
           { className: "SuggestionList " + show },
-          this.getSuggestions()
+          this.renderSuggestions(this.props.suggestions)
         ),
         this.state.show ? _react2.default.createElement("div", { onClick: this.hide, className: "SuggestionList__backdrop" }) : ""
       );
@@ -83,23 +80,19 @@ var SuggestionList = function (_React$Component) {
 }(_react2.default.Component);
 
 SuggestionList.propTypes = {
-  suggestions: _react2.default.PropTypes.array,
+  suggestions: _react2.default.PropTypes.object,
   suggestionComp: _react2.default.PropTypes.func,
-  nullSuggestionElm: _react2.default.PropTypes.element,
-  emptySuggestionElm: _react2.default.PropTypes.element
+  parseSuggestionsData: _react2.default.PropTypes.func,
+  renderEmptySuggestion: _react2.default.PropTypes.func
 };
 SuggestionList.defaultProps = {
   suggestions: null,
   suggestionComp: _Suggestion2.default,
-  nullSuggestionElm: _react2.default.createElement(
-    _Suggestion2.default,
-    null,
-    "Searching ..."
-  ),
-  emptySuggestionElm: _react2.default.createElement(
-    _Suggestion2.default,
-    null,
-    "Sorry, we didn't find any results \u2639"
-  )
+  parseSuggestionsData: function parseSuggestionsData(data) {
+    return data;
+  },
+  renderEmptySuggestion: function renderEmptySuggestion(data) {
+    return null;
+  }
 };
 exports.default = SuggestionList;
