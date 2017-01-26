@@ -90,6 +90,8 @@ var SearchBox = function (_React$Component) {
             _this2.input = input;
           },
           className: "SearchBox__input",
+          onFocus: this.props.onFocus,
+          onBlur: this.props.onBlur,
           onChange: this.onChange,
           placeholder: this.props.placeholder }),
         _react2.default.createElement(
@@ -115,6 +117,8 @@ var SearchBox = function (_React$Component) {
 SearchBox.propTypes = {
   onChange: _react2.default.PropTypes.func,
   onSelect: _react2.default.PropTypes.func,
+  onFocus: _react2.default.PropTypes.func,
+  onBlur: _react2.default.PropTypes.func,
   onBack: _react2.default.PropTypes.func,
   selectedToString: _react2.default.PropTypes.func,
   placeholder: _react2.default.PropTypes.string,

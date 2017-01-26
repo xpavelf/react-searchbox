@@ -5,6 +5,8 @@ export default class SearchBox extends React.Component {
   static propTypes = {
     onChange: React.PropTypes.func,
     onSelect: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
     onBack: React.PropTypes.func,
     selectedToString: React.PropTypes.func,
     placeholder: React.PropTypes.string,
@@ -73,6 +75,8 @@ export default class SearchBox extends React.Component {
         <input value={this.state.inputValue}
           ref={(input) => { this.input = input; }}
           className="SearchBox__input"
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
           onChange={this.onChange}
           placeholder={this.props.placeholder}  />
 
