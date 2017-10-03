@@ -1,21 +1,22 @@
 import React from "react"
 import SuggestionList from "./SuggestionList"
+import PropTypes from 'prop-types'
 
 export default class SearchBox extends React.Component {
   static propTypes = {
-    onChange: React.PropTypes.func,
-    onSelect: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    onBack: React.PropTypes.func,
-    selectedToString: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    suggestions: React.PropTypes.object,
-    parseSuggestionsData: React.PropTypes.func,
-    renderEmptySuggestion: React.PropTypes.func,
-    suggestionComp: React.PropTypes.func,
-    showBackButton: React.PropTypes.bool,
-    autoFocus: React.PropTypes.bool
+    onChange: PropTypes.func,
+    onSelect: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onBack: PropTypes.func,
+    selectedToString: PropTypes.func,
+    placeholder: PropTypes.string,
+    suggestions: PropTypes.object,
+    parseSuggestionsData: PropTypes.func,
+    renderEmptySuggestion: PropTypes.func,
+    suggestionComp: PropTypes.func,
+    showBackButton: PropTypes.bool,
+    autoFocus: PropTypes.bool
   }
 
   static defaultProps = {

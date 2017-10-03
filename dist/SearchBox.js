@@ -14,6 +14,10 @@ var _SuggestionList = require("./SuggestionList");
 
 var _SuggestionList2 = _interopRequireDefault(_SuggestionList);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -115,19 +119,19 @@ var SearchBox = function (_React$Component) {
 }(_react2.default.Component);
 
 SearchBox.propTypes = {
-  onChange: _react2.default.PropTypes.func,
-  onSelect: _react2.default.PropTypes.func,
-  onFocus: _react2.default.PropTypes.func,
-  onBlur: _react2.default.PropTypes.func,
-  onBack: _react2.default.PropTypes.func,
-  selectedToString: _react2.default.PropTypes.func,
-  placeholder: _react2.default.PropTypes.string,
-  suggestions: _react2.default.PropTypes.object,
-  parseSuggestionsData: _react2.default.PropTypes.func,
-  renderEmptySuggestion: _react2.default.PropTypes.func,
-  suggestionComp: _react2.default.PropTypes.func,
-  showBackButton: _react2.default.PropTypes.bool,
-  autoFocus: _react2.default.PropTypes.bool
+  onChange: _propTypes2.default.func,
+  onSelect: _propTypes2.default.func,
+  onFocus: _propTypes2.default.func,
+  onBlur: _propTypes2.default.func,
+  onBack: _propTypes2.default.func,
+  selectedToString: _propTypes2.default.func,
+  placeholder: _propTypes2.default.string,
+  suggestions: _propTypes2.default.object,
+  parseSuggestionsData: _propTypes2.default.func,
+  renderEmptySuggestion: _propTypes2.default.func,
+  suggestionComp: _propTypes2.default.func,
+  showBackButton: _propTypes2.default.bool,
+  autoFocus: _propTypes2.default.bool
 };
 SearchBox.defaultProps = {
   placeholder: "Search...",

@@ -11,14 +11,17 @@
   },
   "author": "Pavel Fatrdla",
   "license": "GPL-3.0",
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-react-jsx": "^6.8.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
-    "react": "^15.4.1"
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.0.0"
   }
 }

@@ -14,6 +14,10 @@ var _Suggestion = require("./Suggestion");
 
 var _Suggestion2 = _interopRequireDefault(_Suggestion);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61,7 +65,7 @@ var SuggestionLink = function (_React$Component) {
 }(_react2.default.Component);
 
 SuggestionLink.propTypes = {
-  data: _react2.default.PropTypes.object.isRequired,
-  onSelect: _react2.default.PropTypes.func.isRequired
+  data: _propTypes2.default.object.isRequired,
+  onSelect: _propTypes2.default.func.isRequired
 };
 exports.default = SuggestionLink;

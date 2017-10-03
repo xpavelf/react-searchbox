@@ -1,10 +1,11 @@
 import React from "react"
 import Suggestion from "./Suggestion"
+import PropTypes from 'prop-types'
 
 export default class SuggestionLink extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object.isRequired,
-    onSelect: React.PropTypes.func.isRequired
+    data: PropTypes.object.isRequired,
+    onSelect: PropTypes.func.isRequired
   }
 
   select = (e) => {

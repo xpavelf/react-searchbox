@@ -1,12 +1,13 @@
 import React from "react"
 import Suggestion from "./Suggestion"
+import PropTypes from 'prop-types'
 
 export default class SuggestionList extends React.Component {
   static propTypes = {
-    suggestions: React.PropTypes.object,
-    suggestionComp: React.PropTypes.func,
-    parseSuggestionsData: React.PropTypes.func,
-    renderEmptySuggestion: React.PropTypes.func
+    suggestions: PropTypes.object,
+    suggestionComp: PropTypes.func,
+    parseSuggestionsData: PropTypes.func,
+    renderEmptySuggestion: PropTypes.func
   }
   static defaultProps = {
     suggestions: null,
