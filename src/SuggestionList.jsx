@@ -2,6 +2,8 @@ import React from "react"
 import Suggestion from "./Suggestion"
 import PropTypes from 'prop-types'
 
+const dropEvt = (evt) => evt.stopPropagation()
+
 export default class SuggestionList extends React.Component {
   static propTypes = {
     suggestions: PropTypes.object,
@@ -38,14 +40,12 @@ export default class SuggestionList extends React.Component {
   hide = () => this.setState({ show: false })
 
   render() {
-    let show = this.state.show ? "SuggestionList--open" : "";
-    return (
-      <div>
-        <ul className={"SuggestionList " + show}>
-          {this.renderSuggestions(this.props.suggestions)}
-        </ul>
-        {this.state.show ? <div onClick={this.hide} className="SuggestionList__backdrop" /> : ""}
-      </div>
-    )
+    return this.state.show
+      ? <div className="SuggestionListWrapper" onClick={this.hide}>
+          <ul className="SuggestionList" onClick={dropEvt}>
+            {this.renderSuggestions(this.props.suggestions)}
+          </ul>
+        </div>
+      : null
   }
 }
