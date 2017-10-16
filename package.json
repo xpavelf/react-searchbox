@@ -12,6 +12,7 @@
   "author": "Pavel Fatrdla",
   "license": "GPL-3.0",
   "dependencies": {
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0"
   },
   "devDependencies": {

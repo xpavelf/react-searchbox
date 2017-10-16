@@ -26,6 +26,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var dropEvt = function dropEvt(evt) {
+  return evt.stopPropagation();
+};
+
 var SuggestionList = function (_React$Component) {
   _inherits(SuggestionList, _React$Component);
 
@@ -66,17 +70,15 @@ var SuggestionList = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var show = this.state.show ? "SuggestionList--open" : "";
-      return _react2.default.createElement(
+      return this.state.show ? _react2.default.createElement(
         "div",
-        null,
+        { className: "SuggestionListWrapper", onClick: this.hide },
         _react2.default.createElement(
           "ul",
-          { className: "SuggestionList " + show },
+          { className: "SuggestionList", onClick: dropEvt },
           this.renderSuggestions(this.props.suggestions)
-        ),
-        this.state.show ? _react2.default.createElement("div", { onClick: this.hide, className: "SuggestionList__backdrop" }) : ""
-      );
+        )
+      ) : null;
     }
   }]);
 

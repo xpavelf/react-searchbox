@@ -18,6 +18,10 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _debounce = require("lodash/debounce");
+
+var _debounce2 = _interopRequireDefault(_debounce);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42,7 +46,20 @@ var SearchBox = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SearchBox.__proto__ || Object.getPrototypeOf(SearchBox)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       inputValue: "",
+      showPrevSearch: false,
+      prevSearch: "",
       showSuggestionList: false
+    }, _this.savePrevSearch = (0, _debounce2.default)(function (str) {
+      var term = str.trim();
+      if (term) {
+        _this.setState({ prevSearch: term });
+      }
+    }, 1000), _this.usePrevSearch = function () {
+      _this.setState({
+        inputValue: _this.state.prevSearch,
+        showSuggestionList: true
+      });
+      _this.props.onChange(_this.state.prevSearch);
     }, _this.clearInput = function () {
       _this.setState({
         inputValue: "",
@@ -55,15 +72,22 @@ var SearchBox = function (_React$Component) {
         showSuggestionList: false
       });
       _this.props.onSelect(data);
+    }, _this.onFocus = function (e) {
+      _this.setState({ showPrevSearch: true });
+      _this.props.onFocus && _this.props.onFocus(e);
+    }, _this.onBlur = function (e) {
+      _this.setState({ showPrevSearch: false });
+      _this.props.onBlur && _this.props.onBlur(e);
     }, _this.onChange = function (e) {
+      var val = e.target.value;
       // workaround - triggers on mobile chrome with same input
-      if (e.target.value !== _this.state.inputValue) {
+      if (val !== _this.state.inputValue) {
         _this.setState({
-          inputValue: e.target.value,
+          inputValue: val,
           showSuggestionList: true
         });
-
-        _this.props.onChange(e.target.value);
+        _this.savePrevSearch(val);
+        _this.props.onChange(val);
       }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -94,8 +118,8 @@ var SearchBox = function (_React$Component) {
             _this2.input = input;
           },
           className: "SearchBox__input",
-          onFocus: this.props.onFocus,
-          onBlur: this.props.onBlur,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
           onChange: this.onChange,
           placeholder: this.props.placeholder }),
         _react2.default.createElement(
@@ -104,6 +128,24 @@ var SearchBox = function (_React$Component) {
             onClick: this.clearInput },
           "\u2715"
         ),
+        this.props.showPrevSearch && !this.state.inputValue && this.state.showPrevSearch && this.state.prevSearch.length ? _react2.default.createElement(
+          "div",
+          { className: "SuggestionListWrapper" },
+          _react2.default.createElement(
+            "div",
+            { className: "SearchBox__prevSearch" },
+            _react2.default.createElement(
+              "button",
+              { className: "SearchBox__prevSearchTerm", onMouseDown: this.usePrevSearch },
+              _react2.default.createElement(
+                "svg",
+                { height: "16", width: "16", viewBox: "0 0 1000 1000", xmlns: "http://www.w3.org/2000/svg" },
+                _react2.default.createElement("path", { fill: "currentColor", d: "M960 832L710.875 582.875C746.438 524.812 768 457.156 768 384 768 171.96900000000005 596 0 384 0 171.969 0 0 171.96900000000005 0 384c0 212 171.969 384 384 384 73.156 0 140.812-21.562 198.875-57L832 960c17.5 17.5 46.5 17.375 64 0l64-64C977.5 878.5 977.5 849.5 960 832zM384 640c-141.375 0-256-114.625-256-256s114.625-256 256-256 256 114.625 256 256S525.375 640 384 640z" })
+              ),
+              this.state.prevSearch
+            )
+          )
+        ) : null,
         _react2.default.createElement(_SuggestionList2.default, {
           show: this.state.showSuggestionList,
           onSelect: this.onSelect,
@@ -131,11 +173,13 @@ SearchBox.propTypes = {
   renderEmptySuggestion: _propTypes2.default.func,
   suggestionComp: _propTypes2.default.func,
   showBackButton: _propTypes2.default.bool,
+  showPrevSearch: _propTypes2.default.bool,
   autoFocus: _propTypes2.default.bool
 };
 SearchBox.defaultProps = {
   placeholder: "Search...",
   showBackButton: false,
+  showPrevSearch: false,
   autoFocus: true,
   onBack: function onBack() {},
   selectedToString: function selectedToString(data) {
